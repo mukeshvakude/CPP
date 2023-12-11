@@ -1,0 +1,137 @@
+************ Scope of Variables in C++ ************
+
+
+1) There are mainly two types of variable scopes: 
+
+	a) Local Variables
+    b) Global Variables
+    
+    1) Local Variables 
+    	1) Variables defined within a function or block are said to be local to those functions. 
+    	2) Anything between ‘{‘ and ‘}’ is said to inside a block
+    	3) Local variables do not exist outside the block in which they are declared, 
+		   i.e. they can not be accessed or used outside that block.
+		4) Declaring local variables: Local variables are declared inside a block.
+		5) Example
+		
+			// usage of local variables 
+			#include<iostream> 
+			using namespace std; 
+			
+			void func() 
+			{ 
+				// this variable is local to the 
+				// function func() and cannot be 
+				// accessed outside this function 
+				int age=18;	 
+			} 
+			
+			int main() 
+			{ 
+				cout<<"Age is: "<<age; 
+				
+				return 0; 
+			} 
+			
+			
+		output => 
+		  Error: age was not declared in this scope	
+		  
+       explanation : 
+	      1) The above program displays an error saying “age was not declared in this scope”. 
+		  2) The variable age was declared within the function func() so it is local to that function and not visible to portion of program outside this function. 
+
+	    Rectified Program : 
+		   1) To correct the above error we have to display the value of variable age from the function func() only. 
+		   2) This is shown in the below program: 
+		   
+		    // usage of local variables 
+			#include<iostream> 
+			using namespace std; 
+			
+			void func() 
+			{ 
+				// this variable is local to the 
+				// function func() and cannot be 
+				// accessed outside this function 
+				int age=18; 
+				cout<<age; 
+			} 
+			
+			int main() 
+			{ 
+				cout<<"Age is: "; 
+				func(); 
+				
+				return 0; 
+			} 
+			
+			output =>  Age is: 18
+			
+	2) Global Variables
+		1) As the name suggests, Global Variables can be accessed from any part of the program.
+		2) They are available through out the life time of a program.
+		3) Declaring global variables: Global variables are usually declared outside of all of the functions and blocks, at the top of the program.
+		4) They can be accessed from any portion of the program.
+		
+		5) Example : 
+				
+			// usage of global variables 
+			#include<iostream> 
+			using namespace std; 
+			
+			// global variable 
+			int global = 5; 
+			
+			// global variable accessed from 
+			// within a function 
+			void display() 
+			{ 
+				cout<<global<<endl; 
+			} 
+			
+			// main function 
+			int main() 
+			{ 
+				display(); 
+				
+				// changing value of global 
+				// variable from main function 
+				global = 10; 
+				display(); 
+			} 
+			
+			output => 5 10
+			
+		explanation : 1) In the program, the variable “global” is declared at the top of the program outside all of the functions 
+		              2) so it is a global variable and can be accessed or updated from anywhere in the program. 
+		              
+		6) How to access a global variable when there is a local variable with same name?
+		  
+		  	1) Below program explains how to do this with the help of scope resolution operator(::).
+			  
+			
+				// variable using scope resolution operator :: when 
+				// there is a local variable with same name 
+				#include<iostream> 
+				using namespace std; 
+				
+				// Global x 
+				int x = 0; 
+					
+				int main() 
+				{ 
+				// Local x	 
+				int x = 10; 
+				cout << "Value of global x is " << ::x; 
+				cout<< "\nValue of local x is " << x; 
+				return 0; 
+				} 
+				
+		    output => Value of global x is 0
+                  Value of local x is 10
+ 
+		  		
+
+
+
